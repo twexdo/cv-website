@@ -1,0 +1,11 @@
+Init:
+
+Create new EC2 with Amazon linux.
+
+connect to ssh console:
+commands:
+sudo yum update -y
+sudo yum install git -y
+
+
+

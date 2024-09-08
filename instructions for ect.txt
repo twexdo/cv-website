@@ -4,8 +4,20 @@ Create new EC2 with Amazon linux.
 
 connect to ssh console:
 commands:
-sudo yum update -y
-sudo yum install git -y
+first update
+    sudo yum update -y
+install git 
+    sudo yum install git -y
+install nvm and node
+    then install node   
+    source ~/.nvm/nvm.sh
+    
+    nvm install node
+    nvm install 16
+
+    nvm alias default node
+     
+
 
 
 

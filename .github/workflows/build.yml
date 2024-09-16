@@ -25,7 +25,11 @@ jobs:
 
       - name: Install dependencies
         run: npm install
+        
+      - name: Install dependencies
+        run: npm run build
 
+      
       - name: Increment version
         run: |
           current_version=$(jq -r '.version' package.json)

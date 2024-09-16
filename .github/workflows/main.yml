@@ -30,8 +30,6 @@ jobs:
 
       - name: Build project
         run: |
-          mkdir -p /home/ec2-user/repository
-          cd /home/ec2-user/repository
           npm install
           npm run build
 

@@ -34,8 +34,6 @@ jobs:
           # Ensure the build branch exists
           git checkout -b build || git checkout build
 
-          git pull
-          
           # Add build files
           git add .
           

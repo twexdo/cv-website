@@ -27,14 +27,15 @@ jobs:
       - name: Remove existing repository directory
         run: |
           sudo rm -rf /home/ec2-user/repository
-
       - name: Build project
         run: |
           npm install
           npm run build
+  # cp: cannot stat ‘/home/ec2-user/repository/dist’: No such file or directory
 
       - name: Copy dist folder to repository
         run: |
+          mkdir /home/ec2-user/repository/
           sudo cp -r /home/ec2-user/repository/dist /home/ec2-user/repository/dist
 
       - name: Set permissions for Nginx

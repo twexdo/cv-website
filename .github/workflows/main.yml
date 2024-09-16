@@ -30,6 +30,10 @@ jobs:
           mv * /home/ec2-user/repository
           cd /home/ec2-user/repository
 
+      - name: Remove existing dist directory
+        run: |
+          rm -rf /home/ec2-user/repository/dist
+
       - name: Install dependencies
         run: |
           cd /home/ec2-user/repository
@@ -39,3 +43,8 @@ jobs:
         run: |
           cd /home/ec2-user/repository
           npm run build
+
+      - name: Set permissions for Nginx
+        run: |
+          sudo chown -R nginx:nginx /home/ec2-user/repository/dist
+          sudo chmod -R 755 /home/ec2-user/repository/dist

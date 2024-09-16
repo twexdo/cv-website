@@ -12,7 +12,7 @@ jobs:
     - name: NVM Setup Node
       uses: irby/setup-node-nvm@master
       with:
-        node-version: lts/*
+        node-version: 16
         
     - name: Install Node.js v16.20.0
       run: | 

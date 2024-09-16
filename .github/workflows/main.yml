@@ -32,6 +32,11 @@ jobs:
           npm install
           npm run build
           
+      - name: List directory contents after build
+        run: |
+          ls -la /home/ec2-user/repository
+          ls -la /home/ec2-user/repository/dist
+
       - name: Verify dist directory exists
         run: |
           if [ -d "/home/ec2-user/repository/dist" ]; then echo "dist directory exists"; else echo "dist directory does not exist"; exit 1; fi

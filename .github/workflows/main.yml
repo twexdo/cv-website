@@ -28,18 +28,12 @@ jobs:
         run: |
           sudo rm -rf /home/ec2-user/repository || true
 
-      - name: Create repository directory and copy code
+      - name: Create repository directory and copy code and instal and build
         run: |
           mkdir -p /home/ec2-user/repository
           cp -r . /home/ec2-user/repository/
           cd /home/ec2-user/repository
-
-      - name: Install dependencies
-        run: |
           npm install
-
-      - name: Build project
-        run: |
           npm run build
 
       - name: Set permissions for Nginx

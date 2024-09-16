@@ -23,8 +23,12 @@ jobs:
 
       - name: Checkout code
         uses: actions/checkout@v3
-        with:
-          path: /home/ec2-user/repository  # Specify the path where you want to clone the repo
+
+      - name: Move code to /home/ec2-user
+        run: |
+          mkdir -p /home/ec2-user/repository
+          mv * /home/ec2-user/repository
+          cd /home/ec2-user/repository
 
       - name: Install dependencies
         run: |

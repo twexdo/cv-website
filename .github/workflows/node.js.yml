@@ -1,4 +1,3 @@
-name: Deploy to EC2
 
 on:
   push:
@@ -12,7 +11,9 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
-
+      
+    - name: Set up node using nvm
+      uses: dcodeIO/setup-node-nvm@v5
     # - name: Install Node.js v16.20.0
     #   run: | 
     #     nvm install 16.20.0

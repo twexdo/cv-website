@@ -18,6 +18,14 @@ jobs:
         with:
           node-version: '16' # Use your Node.js version
 
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16' # Use the Node.js version appropriate for your project
+
+      - name: Install dependencies
+        run: npm install
+
       - name: Increment version
         run: |
           current_version=$(jq -r '.version' package.json)
@@ -26,6 +34,15 @@ jobs:
           new_version="${version_parts[0]}.${version_parts[1]}.$(printf "%03d" ${version_parts[2]})"
           jq ".version = \"$new_version\"" package.json > package.tmp.json && mv package.tmp.json package.json
 
+      
+      - name: Increment version
+        run: |
+          current_version=$(jq -r '.version' package.json)
+          IFS='.' read -r -a version_parts <<< "$current_version"
+          version_parts[2]=$((version_parts[2] + 1))
+          new_version="${version_parts[0]}.${version_parts[1]}.$(printf "%03d" ${version_parts[2]})"
+          jq ".version = \"$new_version\"" package.json > package.tmp.json && mv package.tmp.json package.json
+  
       - name: Commit version change
         run: |
           git config --global user.name "github-actions"

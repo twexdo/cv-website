@@ -24,16 +24,24 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Remove existing repository directory
-        run: |
-          sudo rm -rf /home/ec2-user/repository || true
-
-      - name: Create repository directory and copy code and instal and build
+      - name: Move code to /home/ec2-user
         run: |
           mkdir -p /home/ec2-user/repository
-          cp -r . /home/ec2-user/repository/
+          mv * /home/ec2-user/repository
+          cd /home/ec2-user/repository
+
+      - name: Remove existing dist directory
+        run: |
+          rm -rf /home/ec2-user/repository/dist
+
+      - name: Install dependencies
+        run: |
           cd /home/ec2-user/repository
           npm install
+
+      - name: Build project
+        run: |
+          cd /home/ec2-user/repository
           npm run build
 
       - name: Set permissions for Nginx

@@ -4,7 +4,7 @@ on:
   # Trigger on push to the specific branch
   push:
     branches:
-      - backup-branch
+      - master
 
   # Allow manual trigger for testing purposes
   workflow_dispatch:
@@ -14,18 +14,7 @@ jobs:
     runs-on: self-hosted
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      - name: Copy dist folder
-        run: |
-          sudo mkdir -p /usr/share/nginx/html
-          sudo cp -r dist/* /usr/share/nginx/html/
-
-      - name: Set permissions for Nginx
-        run: |
-          sudo chmod -R 755 /usr/share/nginx/html
-
-      - name: Restart Nginx
-        run: |
-          sudo systemctl restart nginx
+        - name: NVM Setup Node
+          uses: irby/setup-node-nvm@v1.0.0
+        
+          

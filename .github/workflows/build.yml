@@ -26,13 +26,15 @@ jobs:
 
       - name: Set up Git
         run: |
-          git config --global user.name 'github-actions'
-          git config --global user.email 'github-actions@github.com'
+          git config --global user.name 'Adrian'
+          git config --global user.email 'adiupm@gmail.com'
 
       - name: Create build branch and push
         run: |
           # Ensure the build branch exists
           git checkout -b build || git checkout build
+
+          git pull
           
           # Add build files
           git add .

@@ -31,11 +31,13 @@ jobs:
         run: |
           npm install
           npm run build
-  # cp: cannot stat ‘/home/ec2-user/repository/dist’: No such file or directory
+          
+      - name: Verify dist directory exists
+        run: |
+          if [ -d "/home/ec2-user/repository/dist" ]; then echo "dist directory exists"; else echo "dist directory does not exist"; exit 1; fi
 
       - name: Copy dist folder to repository
         run: |
-          mkdir /home/ec2-user/repository/
           sudo cp -r /home/ec2-user/repository/dist /home/ec2-user/repository/dist
 
       - name: Set permissions for Nginx

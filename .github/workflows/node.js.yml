@@ -1,0 +1,41 @@
+name: Deploy to EC2
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    runs-on: [self-hosted, ec2-website]
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Install Node.js v16.20.0
+      run: |
+        nvm install 16.20.0
+        nvm use 16.20.0
+
+    - name: Install npm dependencies
+      run: |
+        cd /home/ec2-user/cv-website
+        npm install
+
+    - name: Build project
+      run: |
+        cd /home/ec2-user/cv-website
+        npm run build
+
+    - name: Copy dist folder to nginx directory
+      run: |
+        sudo cp -r /home/ec2-user/cv-website/dist/* /usr/share/nginx/html
+
+    - name: Change ownership of files
+      run: |
+        sudo chown -R nginx:nginx /usr/share/nginx/html
+
+    - name: Restart Nginx
+      run: |
+        sudo systemctl restart nginx

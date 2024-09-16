@@ -405,7 +405,7 @@ export default function Component() {
           viewport={{ once: true }}
         >
           <a
-            href="/cv.pdf"
+            href="https://twexdo.s3.eu-north-1.amazonaws.com/stef/cv.pdf"
             download
             className="inline-flex items-center px-6 py-3 bg-[#ACBB78] text-white rounded-lg hover:[#ACBB78] transition-colors shadow-lg hover:shadow-xl"
           >

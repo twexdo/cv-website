@@ -26,21 +26,12 @@ jobs:
 
       - name: Remove existing repository directory
         run: |
-          sudo rm -rf /home/ec2-user/repository
+          sudo rm -rf /home/ec2-user/repository/dist/*
       - name: Build project
         run: |
           npm install
           npm run build
-          
-      - name: List directory contents after build
-        run: |
-          ls -la /home/ec2-user/repository
-          ls -la /home/ec2-user/repository/dist
-
-      - name: Verify dist directory exists
-        run: |
-          if [ -d "/home/ec2-user/repository/dist" ]; then echo "dist directory exists"; else echo "dist directory does not exist"; exit 1; fi
-
+    
       - name: Copy dist folder to repository
         run: |
           sudo cp -r /home/ec2-user/repository/dist /home/ec2-user/repository/dist

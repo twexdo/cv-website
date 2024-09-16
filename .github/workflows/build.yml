@@ -52,6 +52,7 @@ jobs:
           git config --global user.name "github-actions"
           git config --global user.email "actions@github.com"
           git add package.json
+          git add dist
           git commit -m "Increment version to $new_version"
 
       - name: Push updated code to backup branch

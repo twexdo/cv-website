@@ -201,13 +201,17 @@ export default function Component() {
                   Stef Adrian
                 </h1>
                 <h2 className="text-xl md:text-2xl text-gray-600 mb-2 md:mb-4">
-                  Full Stack Developer
+                  I help businesses build dynamic, full-stack applications
                 </h2>
                 <p className="text-sm md:text-md mb-2 md:mb-6">
-                  Passionate programmer with 4.5 years of experience in Node.js
-                  and frontend development. Fast learner and easily adaptable to
-                  new technologies.
+                  By leveraging 4.5 years of hands-on experience in Node.js and
+                  frontend development, I specialize in delivering fast,
+                  responsive, and scalable web apps. I'm passionate about
+                  solving complex technical challenges, continuously learning
+                  new technologies, and ensuring seamless user experiences
+                  across platforms.
                 </p>
+
                 <div className="flex justify-center md:justify-start space-x-4">
                   <a
                     href="https://github.com/johndoe"

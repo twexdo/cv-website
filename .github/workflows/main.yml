@@ -42,10 +42,24 @@ jobs:
         run: |
           npm run build
 
+      - name: Preserve dist directory
+        run: |
+          cd /home/ec2-user/repository
+          if [ -d "dist" ]; then
+            mv dist ../dist_backup
+          fi
+
       - name: Remove all files except dist
         run: |
           cd /home/ec2-user/repository
-          find . -mindepth 1 -maxdepth 1 ! -name 'dist' -exec rm -rf {} +  # Remove all files and directories except 'dist'
+          find . -mindepth 1 -maxdepth 1 ! -name 'dist_backup' -exec rm -rf {} +
+
+      - name: Restore dist directory
+        run: |
+          cd /home/ec2-user/repository
+          if [ -d "../dist_backup" ]; then
+            mv ../dist_backup dist
+          fi
 
       - name: Set permissions for Nginx
         run: |

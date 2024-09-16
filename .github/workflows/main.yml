@@ -1,34 +1,31 @@
 name: Deploy to Amazon Linux
 
 on:
+  # Trigger on push to the specific branch
   push:
     branches:
       - backup-branch
+
+  # Allow manual trigger for testing purposes
+  workflow_dispatch:
 
 jobs:
   deploy:
     runs-on: self-hosted
 
     steps:
-      # Step 1: Checkout the repository
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # Step 2: Copy dist folder to the server
       - name: Copy dist folder
         run: |
-          # Ensure the target directory exists
           sudo mkdir -p /usr/share/nginx/html
-
-          # Copy dist folder to Nginx directory
           sudo cp -r dist/* /usr/share/nginx/html/
 
-      # Step 3: Set permissions for Nginx
       - name: Set permissions for Nginx
         run: |
           sudo chmod -R 755 /usr/share/nginx/html
 
-      # Step 4: Restart Nginx
       - name: Restart Nginx
         run: |
           sudo systemctl restart nginx

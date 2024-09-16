@@ -15,7 +15,6 @@ jobs:
 
     - name: Install Node.js v16.20.0
       run: |
-        nvm install 16.20.0
         nvm use 16.20.0
 
     - name: Install npm dependencies

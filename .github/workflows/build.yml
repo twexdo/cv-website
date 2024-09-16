@@ -37,12 +37,19 @@ jobs:
       #     new_version="${version_parts[0]}.${version_parts[1]}.$(printf "%03d" ${version_parts[2]})"
       #     jq ".version = \"$new_version\"" package.json > package.tmp.json && mv package.tmp.json package.json
       
-      - name: Commit version change
+      - name: Commit build files
         run: |
           git config --global user.name "github-actions"
           git config --global user.email "actions@github.com"
-          # git add package.json
+
+          # Print changed files
+          echo "Changed files:"
+          git status --short
+
+          # Add all files in dist to the commit
           git add dist
+
+          # Commit the changes
           git commit -m "Build files"
 
       - name: Push updated code to backup branch

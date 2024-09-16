@@ -41,6 +41,6 @@ jobs:
           git commit -m 'Add build artifacts'
 
           # Push to the build branch
-          git push origin build
+          git push -f origin main
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

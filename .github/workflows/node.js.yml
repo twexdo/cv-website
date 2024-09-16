@@ -14,7 +14,7 @@ jobs:
       
     - name: Set up node using nvm
       uses: dcodeIO/setup-node-nvm@v5
-       node-version:12.22.12
+       node-version:v12.22.12
 
  
 

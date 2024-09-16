@@ -23,9 +23,15 @@ jobs:
 
       - name: Checkout code
         uses: actions/checkout@v3
+        with:
+          path: /home/ec2-user/repository  # Specify the path where you want to clone the repo
 
       - name: Install dependencies
-        run: npm install
+        run: |
+          cd /home/ec2-user/repository
+          npm install
 
       - name: Build project
-        run: npm run build
+        run: |
+          cd /home/ec2-user/repository
+          npm run build

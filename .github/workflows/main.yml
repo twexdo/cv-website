@@ -22,7 +22,7 @@ jobs:
         run: node -v
       - name: Remove existing dist directory
         run: |
-          rm -rf /home/ec2-user/repository
+          sudo rm -rf /home/ec2-user/repository
       - name: Checkout code
         uses: actions/checkout@v3
   

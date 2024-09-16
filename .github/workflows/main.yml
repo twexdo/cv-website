@@ -45,8 +45,7 @@ jobs:
       - name: Remove all files except dist
         run: |
           cd /home/ec2-user/repository
-          find . ! -name 'dist' -type d -exec rm -rf {} +  # Remove all directories except 'dist'
-          find . ! -name 'dist' -type f -exec rm -f {} +  # Remove all files except 'dist'
+          find . -mindepth 1 -maxdepth 1 ! -name 'dist' -exec rm -rf {} +  # Remove all files and directories except 'dist'
 
       - name: Set permissions for Nginx
         run: |

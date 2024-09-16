@@ -26,10 +26,9 @@ jobs:
       - name: Install dependencies
         run: npm install
         
-      - name: Install dependencies
+      - name: Run Build
         run: npm run build
 
-      
       - name: Increment version
         run: |
           current_version=$(jq -r '.version' package.json)
@@ -37,16 +36,7 @@ jobs:
           version_parts[2]=$((version_parts[2] + 1))
           new_version="${version_parts[0]}.${version_parts[1]}.$(printf "%03d" ${version_parts[2]})"
           jq ".version = \"$new_version\"" package.json > package.tmp.json && mv package.tmp.json package.json
-
       
-      - name: Increment version
-        run: |
-          current_version=$(jq -r '.version' package.json)
-          IFS='.' read -r -a version_parts <<< "$current_version"
-          version_parts[2]=$((version_parts[2] + 1))
-          new_version="${version_parts[0]}.${version_parts[1]}.$(printf "%03d" ${version_parts[2]})"
-          jq ".version = \"$new_version\"" package.json > package.tmp.json && mv package.tmp.json package.json
-  
       - name: Commit version change
         run: |
           git config --global user.name "github-actions"

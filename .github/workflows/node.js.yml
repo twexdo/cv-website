@@ -10,9 +10,7 @@ jobs:
    
     steps:
     - name: NVM Setup Node
-      uses: irby/setup-node-nvm@master
-      with:
-        node-version: 12
+      run: pwd
 
 
  

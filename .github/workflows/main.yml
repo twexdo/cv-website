@@ -20,9 +20,7 @@ jobs:
 
       - name: Print Node.js version
         run: node -v
-      - name: Remove existing dist directory
-        run: |
-          sudo rm -rf /home/ec2-user/repository
+      
       - name: Checkout code
         uses: actions/checkout@v3
   
@@ -45,8 +43,16 @@ jobs:
         run: |
           cd /home/ec2-user/repository
           npm run build
+      - name: Move dist files to /var/www/html
+        run: |
+          sudo rm -rf /var/www/html/*
+          sudo mv /home/ec2-user/repository/dist/* /var/www/html
+   
+      - name: Remove repository
+        run: |
+          sudo rm -rf /home/ec2-user/repository
 
       - name: Set permissions for Nginx
         run: |
-          sudo chown -R nginx:nginx /home/ec2-user/repository/dist
-          sudo chmod -R 755 /home/ec2-user/repository/dist
+          sudo chown -R nginx:nginx /var/www/html
+          sudo chmod -R 755 /var/www/html
